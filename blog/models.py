@@ -5,19 +5,58 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils.six import python_2_unicode_compatible
 from django.utils.html import strip_tags
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 # python_2_unicode_compatible 装饰器用于兼容 Python2
+# """
+#     Django 要求模型必须继承 models.Model 类。
+#     CharField 指定了分类名 name 的数据类型，CharField 是字符型，
+#     CharField 的 max_length 参数指定其最大长度，超过这个长度的分类名就不能被存入数据库。
+#     当然 Django 还为我们提供了多种其它的数据类型，如日期时间类型 DateTimeField、整数类型 IntegerField 等等。
+#     Django 内置的全部类型可查看文档：
+#     https://docs.djangoproject.com/en/1.10/ref/models/fields/#field-types
+#     """
+
+@python_2_unicode_compatible
+class About(models.Model):
+    """
+    about_body:关于我的文本内容
+    """
+    about_body = RichTextUploadingField()
+
+    def __str__(self):
+        return self.about_body
+
+
+@python_2_unicode_compatible
+class Link(models.Model):
+    """
+    name:名称
+    links:地址
+    """
+    name = models.CharField(max_length=100)
+    links = models.URLField()
+
+    def __str__(self):
+        return self.name
+
+
+@python_2_unicode_compatible
+class Contact(models.Model):
+    """
+    contact_body:个人联系方式
+    """
+    contact_body = RichTextUploadingField
+
+    def __str__(self):
+        return self.contact_body
+
+
 @python_2_unicode_compatible
 class Category(models.Model):
     """
-    Django 要求模型必须继承 models.Model 类。
-    Category 只需要一个简单的分类名 name 就可以了。
-    CharField 指定了分类名 name 的数据类型，CharField 是字符型，
-    CharField 的 max_length 参数指定其最大长度，超过这个长度的分类名就不能被存入数据库。
-    当然 Django 还为我们提供了多种其它的数据类型，如日期时间类型 DateTimeField、整数类型 IntegerField 等等。
-    Django 内置的全部类型可查看文档：
-    https://docs.djangoproject.com/en/1.10/ref/models/fields/#field-types
+    name:分类名称
     """
     name = models.CharField(max_length=100)
 
@@ -28,8 +67,7 @@ class Category(models.Model):
 @python_2_unicode_compatible
 class Tag(models.Model):
     """
-    标签 Tag 也比较简单，和 Category 一样。
-    再次强调一定要继承 models.Model 类！
+    name:标签名称
     """
     name = models.CharField(max_length=100)
 

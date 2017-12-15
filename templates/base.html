@@ -1,12 +1,17 @@
 {% load staticfiles %}
 {% load blog_tags %}
-<!DOCTYPE html>
 <html>
 <head>
-    <title>Black &amp; White</title>
+    <title>{% block title %}{% endblock %}</title>
 
     <!-- meta -->
     <meta charset="UTF-8">
+    <meta content="Kaming Blog" name="title">
+    <meta content="Kaming Blog" name="og:title">
+    <meta content="kaming.xyz" property="og:url">
+    <meta content="写代码的" property="og:description">
+    <meta content="blog" property="og:type">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- css -->
@@ -20,6 +25,7 @@
         span.highlighted {
             color: red;
         }
+
     </style>
 
     <!-- js -->
@@ -27,6 +33,7 @@
     <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'blog/js/pace.min.js' %}"></script>
     <script src="{% static 'blog/js/modernizr.custom.js' %}"></script>
+
 </head>
 
 <body>
@@ -35,7 +42,9 @@
         <div class="row">
             <div class="col-md-4 col-sm-5 col-xs-8">
                 <div class="logo">
-                    <h1><a href="{% url 'blog:index' %}"><b>Black</b> &amp; White</a></h1>
+                    <h1><a href="{% url 'blog:index' %}">Kaming</a>
+                        <!--<span><img class="img-circle" src="static/blog/media/lizard.png"/></span>-->
+                    </h1>
                 </div>
             </div><!-- col-md-4 -->
             <div class="col-md-8 col-sm-7 col-xs-4">
@@ -69,7 +78,7 @@
     </header>
 </div>
 <div class="copyrights">Collect from <a href="http://www.cssmoban.com/">网页模板</a></div>
-<div class="copyrights">Modified by <a href="http://zmrenwu.com/">追梦人物的博客</a></div>
+<div class="copyrights">Modified by <a href="http://kaming.xyz/">Kaming的博客</a></div>
 
 <div class="content-body">
     <div class="container">
@@ -86,11 +95,11 @@
                     {% get_recent_posts as recent_post_list %}
                     <ul>
                         {% for post in recent_post_list %}
-                            <li>
-                                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-                            </li>
+                        <li>
+                            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                        </li>
                         {% empty %}
-                            暂无文章！
+                        暂无文章！
                         {% endfor %}
                     </ul>
                 </div>
@@ -99,12 +108,12 @@
                     {% archives as date_list %}
                     <ul>
                         {% for date in date_list %}
-                            <li>
-                                <a href="{% url 'blog:archives' date.year date.month %}">{{ date.year }}
-                                    年 {{ date.month }} 月</a>
-                            </li>
+                        <li>
+                            <a href="{% url 'blog:archives' date.year date.month %}">{{ date.year }}
+                                年 {{ date.month }} 月</a>
+                        </li>
                         {% empty %}
-                            暂无归档！
+                        暂无归档！
                         {% endfor %}
                     </ul>
                 </div>
@@ -114,26 +123,26 @@
                     {% get_categories as category_list %}
                     <ul>
                         {% for category in category_list %}
-                            <li>
-                                <a href="{% url 'blog:category' category.pk %}">{{ category.name }} <span
-                                        class="post-count">({{ category.num_posts }})</span></a>
-                            </li>
+                        <li>
+                            <a href="{% url 'blog:category' category.pk %}">{{ category.name }} <span
+                                    class="post-count">({{ category.num_posts }})</span></a>
+                        </li>
                         {% empty %}
-                            暂无分类！
+                        暂无分类！
                         {% endfor %}
                     </ul>
                 </div>
 
                 <div class="widget widget-tag-cloud">
-                    <h3 class="widget-title">标签云</h3>
+                    <h3 class="widget-title">标签</h3>
                     {% get_tags as tag_list %}
                     <ul>
                         {% for tag in tag_list %}
-                            <li>
-                                <a href="{% url 'blog:tag' tag.pk %}">{{ tag.name }}</a>
-                            </li>
+                        <li>
+                            <a href="{% url 'blog:tag' tag.pk %}">{{ tag.name }}</a>
+                        </li>
                         {% empty %}
-                            暂无标签！
+                        暂无标签！
                         {% endfor %}
                     </ul>
                 </div>
@@ -151,7 +160,7 @@
             <div class="col-md-12">
                 <p class="copyright">&copy 2017 - 采集自<a href="http://www.cssmoban.com/"
                                                         target="_blank" title="模板之家">模板之家</a>
-                    - 由<a href="http://zmrenwu.com/" title="网页模板" target="_blank">追梦人物的博客</a>修改
+                    - 由<a href="http://kaming.xyz/" title="网页模板" target="_blank">Kaming的博客</a>修改
                 </p>
             </div>
         </div>

@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'haystack',
     'blog',
     'comments',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -126,3 +128,35 @@ HAYSTACK_CONNECTIONS = {
 }
 HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+
+CKEDITOR_ALLOW_NONIMAGE_FILES = True
+CKEDITOR_UPLOAD_PATH = 'upload/'
+CKEDITOR_RESTRICT_BY_USER = True
+CKEDITOR_UPLOAD_SLUGIFY_FILENAME = False
+CKEDITOR_BROWSE_SHOW_DIRS = True
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': (
+            ['div', 'Source', '-', 'Save', 'NewPage', 'Preview'],
+            ['Undo', 'Redo', '-', 'Find', 'Replace'],
+            ['Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'],
+            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink', 'Anchor'],
+            ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'],
+            ['Styles', 'Format', 'Font', 'FontSize'],
+            ['TextColor', 'BGColor'],
+            ['Maximize', 'ShowBlocks', 'pbckcode'],
+        ),
+        'extraPlugins': ','.join([
+            'uploadimage',  # the upload image feature
+            # your extra plugins here
+            'div',
+            'autolink',
+            'autoembed',
+            'embedsemantic',
+            'autogrow',
+            'codesnippet',
+        ]),
+    },
+}

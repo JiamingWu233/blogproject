@@ -30,21 +30,22 @@
     <section class="comment-area" id="comment-area">
         <hr>
         <h3>发表评论</h3>
+        <p>电子邮件地址不会被公开。 必填项已用*标注</p>
         <form action="{% url 'comments:post_comment' post.pk %}" method="post" class="comment-form">
             {% csrf_token %}
             <div class="row">
                 <div class="col-md-4">
-                    <label for="{{ form.name.id_for_label }}">名字：</label>
+                    <label for="{{ form.name.id_for_label }}">名字*</label>
                     {{ form.name }}
                     {{ form.name.errors }}
                 </div>
                 <div class="col-md-4">
-                    <label for="{{ form.email.id_for_label }}">邮箱：</label>
+                    <label for="{{ form.email.id_for_label }}">邮箱*</label>
                     {{ form.email }}
                     {{ form.email.errors }}
                 </div>
                 <div class="col-md-4">
-                    <label for="{{ form.url.id_for_label }}">URL：</label>
+                    <label for="{{ form.url.id_for_label }}">站点</label>
                     {{ form.url }}
                     {{ form.url.errors }}
                 </div>
