@@ -3,13 +3,13 @@
 
 效果看这里：[kaming.xyz](kaming.xyz)
 
-##功能
+## 功能
 
  - 富文本编写([django-ckeditor](https://github.com/django-ckeditor/django-ckeditor))
  - 支持Markdown语法([markdown](https://github.com/Python-Markdown/markdown))
  - 后台管理([django](https://github.com/django/django))
 
-##环境配置
+## 环境配置
  - [django 1.10](https://github.com/django/django)
  - [python 3.5](https://www.python.org/)
 
@@ -69,7 +69,7 @@
    使用第 5 步创建的后台管理员账户登录
 
 
-##感谢
+## 感谢
 
  - [django-blog-tutorial](https://github.com/zmrenwu/django-blog-tutorial)
 
