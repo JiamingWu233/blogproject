@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% block title %}首页{% endblock %}
 {% block main %}
     {% if error_msg %}
         <p>{{ error_msg }}</p>
@@ -30,7 +30,7 @@
             </div>
         </article>
     {% empty %}
-        <div class="no-post">暂时还没有发布的文章！</div>
+        <div class="no-post">暂时还没有发布的文章</div>
     {% endfor %}
 
     {% comment %}

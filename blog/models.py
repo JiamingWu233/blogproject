@@ -7,7 +7,6 @@ from django.utils.six import python_2_unicode_compatible
 from django.utils.html import strip_tags
 from ckeditor_uploader.fields import RichTextUploadingField
 
-
 # python_2_unicode_compatible 装饰器用于兼容 Python2
 # """
 #     Django 要求模型必须继承 models.Model 类。
@@ -47,7 +46,7 @@ class Contact(models.Model):
     """
     contact_body:个人联系方式
     """
-    contact_body = RichTextUploadingField
+    contact_body = RichTextUploadingField()
 
     def __str__(self):
         return self.contact_body
@@ -86,7 +85,7 @@ class Post(models.Model):
 
     # 文章正文，我们使用了 TextField。
     # 存储比较短的字符串可以使用 CharField，但对于文章的正文来说可能会是一大段文本，因此使用 TextField 来存储大段文本。
-    body = models.TextField()
+    body = RichTextUploadingField()
 
     # 这两个列分别表示文章的创建时间和最后一次修改时间，存储时间的字段用 DateTimeField 类型。
     created_time = models.DateTimeField()

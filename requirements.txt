@@ -1,7 +1,12 @@
-django==1.10.6
+Django==1.10.6
+django-ckeditor==5.4.0
+django-haystack==2.6.1
+django-js-asset==0.1.1
+image==1.5.16
+jieba==0.38
 Markdown==2.6.8
+olefile==0.44
+Pillow==4.3.0
 Pygments==2.2.0
 pytz==2016.10
-django-haystack==2.6.1
-jieba==0.38
 Whoosh==2.7.4

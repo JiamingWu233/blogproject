@@ -2,13 +2,13 @@ import markdown
 
 from markdown.extensions.toc import TocExtension
 
-from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, DetailView
+from django.shortcuts import render_to_response
+from django.views.generic import ListView, DetailView, View
 from django.utils.text import slugify
 
 from comments.forms import CommentForm
-from .models import Post, Category, Tag
+from .models import Post, Category, Tag, Link, About, Contact
 
 """
 请使用下方的模板引擎方式。
@@ -298,6 +298,21 @@ class TagView(ListView):
     def get_queryset(self):
         tag = get_object_or_404(Tag, pk=self.kwargs.get('pk'))
         return super(TagView, self).get_queryset().filter(tags=tag)
+
+
+def about(request):
+    about = get_object_or_404(About, pk=1)
+    return render_to_response('blog/about.html', context={'about': about})
+
+
+def links(request):
+    link_list = Link.objects.all()
+    return render_to_response(r'blog/links.html', context={'link_list': link_list})
+
+
+def contact(request):
+    contact = get_object_or_404(Contact, pk=1)
+    return render_to_response('blog/contact.html', context={'contact': contact})
 
 
 """

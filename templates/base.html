@@ -58,9 +58,9 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="cl-effect-11"><a href="{% url 'blog:index' %}" data-hover="首页">首页</a></li>
-                            <li class="cl-effect-11"><a href="#" data-hover="博客">博客</a></li>
-                            <li class="cl-effect-11"><a href="#" data-hover="关于">关于</a></li>
-                            <li class="cl-effect-11"><a href="#" data-hover="联系">联系</a></li>
+                            <li class="cl-effect-11"><a href="{% url 'blog:index' %}" data-hover="博客">博客</a></li>
+                            <li class="cl-effect-11"><a href="{% url 'blog:about' %}" data-hover="关于">关于</a></li>
+                            <li class="cl-effect-11"><a href="{% url 'blog:contact' %}" data-hover="联系">联系</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </nav>
@@ -99,7 +99,7 @@
                             <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
                         </li>
                         {% empty %}
-                        暂无文章！
+                        暂无文章
                         {% endfor %}
                     </ul>
                 </div>
@@ -113,7 +113,7 @@
                                 年 {{ date.month }} 月</a>
                         </li>
                         {% empty %}
-                        暂无归档！
+                        暂无归档
                         {% endfor %}
                     </ul>
                 </div>
@@ -128,7 +128,7 @@
                                     class="post-count">({{ category.num_posts }})</span></a>
                         </li>
                         {% empty %}
-                        暂无分类！
+                        暂无分类
                         {% endfor %}
                     </ul>
                 </div>
@@ -142,7 +142,7 @@
                             <a href="{% url 'blog:tag' tag.pk %}">{{ tag.name }}</a>
                         </li>
                         {% empty %}
-                        暂无标签！
+                        暂无标签
                         {% endfor %}
                     </ul>
                 </div>
@@ -173,9 +173,9 @@
     <nav>
         <ul>
             <li><a href="{% url 'blog:index' %}">首页</a></li>
-            <li><a href="#">博客</a></li>
-            <li><a href="#">关于</a></li>
-            <li><a href="#">联系</a></li>
+            <li><a href="{% url 'blog:index' %}">博客</a></li>
+            <li><a href="{% url 'blog:about' %}">关于</a></li>
+            <li><a href="{% url 'blog:contact' %}">联系</a></li>
         </ul>
     </nav>
 </div>
