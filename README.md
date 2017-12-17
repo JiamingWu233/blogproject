@@ -1,7 +1,7 @@
 
 基于 Django 1.10 和 Python 3.5搭建的博客系统
 
-效果看这里：[kaming.xyz](kaming.xyz)
+效果看这里：[kaming.xyz](http://kaming.xyz)
 
 ## 功能
 
