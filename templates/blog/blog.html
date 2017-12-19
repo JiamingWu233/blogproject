@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}博客{% endblock %}
+{% block main %}
+<div class="blog-body">
+    <ul class="list-unstyled">
+        {% for post in post_list %}
+        <li class="blog blog-{{ post.pk }}">
+            <div>
+                <div class="row">
+               <span><a class="text-left" href="{{ post.get_absolute_url }}">{{ post.title }}</a></span>
+                </div>
+                <div class="row">
+                     <span class="post-category">
+                        <a href="{% url 'blog:category' post.category.pk %}">{{ post.category.name }}</a></span>
+                <span class="post-date"><a href="#"><time class="entry-date"
+                                                          datetime="{{ post.created_time }}">{{ post.created_time }}</time></a></span>
+                <!--<span class="post-author"><a href="#">{{ post.author }}</a></span>-->
+                <span class="comments-link">
+                    <a href="{{ post.get_absolute_url }}#comment-area">{{ post.comment_set.count }} 评论</a></span>
+                <span class="views-count"><a href="{{ post.get_absolute_url }}">{{ post.views }} 阅读</a></span>
+                </div>
+            </div>
+        </li>
+        {% empty %}
+        <div class="no-post">暂时还没有发布的文章</div>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
