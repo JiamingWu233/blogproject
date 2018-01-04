@@ -7,17 +7,17 @@
         <li class="blog blog-{{ post.pk }}">
             <div>
                 <div class="row">
-               <span><a class="text-left" href="{{ post.get_absolute_url }}">{{ post.title }}</a></span>
+                    <span><a class="blog-title" href="{{ post.get_absolute_url }}">{{ post.title }}</a></span>
                 </div>
-                <div class="row">
+                <div class="row blog-info">
                      <span class="post-category">
                         <a href="{% url 'blog:category' post.category.pk %}">{{ post.category.name }}</a></span>
-                <span class="post-date"><a href="#"><time class="entry-date"
-                                                          datetime="{{ post.created_time }}">{{ post.created_time }}</time></a></span>
-                <!--<span class="post-author"><a href="#">{{ post.author }}</a></span>-->
-                <span class="comments-link">
+                    <span class="post-date"><a href="#"><time class="entry-date"
+                                                              datetime="{{ post.created_time }}">{{ post.created_time }}</time></a></span>
+                    <!--<span class="post-author"><a href="#">{{ post.author }}</a></span>-->
+                    <span class="comments-link">
                     <a href="{{ post.get_absolute_url }}#comment-area">{{ post.comment_set.count }} 评论</a></span>
-                <span class="views-count"><a href="{{ post.get_absolute_url }}">{{ post.views }} 阅读</a></span>
+                    <span class="views-count"><a href="{{ post.get_absolute_url }}">{{ post.views }} 阅读</a></span>
                 </div>
             </div>
         </li>
@@ -25,5 +25,55 @@
         <div class="no-post">暂时还没有发布的文章</div>
         {% endfor %}
     </ul>
+    {% comment %}
+    简单分页导航：
+    {% if is_paginated %}
+    <div class="pagination-simple">
+        <!-- 如果当前页还有上一页，显示一个上一页的按钮 -->
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">上一页</a>
+        {% endif %}
+        <!-- 显示当前页面信息 -->
+        <span class="current">第 {{ page_obj.number }} 页 / 共 {{ paginator.num_pages }} 页</span>
+        <!-- 如果当前页还有下一页，显示一个下一页的按钮 -->
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">下一页</a>
+        {% endif %}
+    </div>
+    {% endif %}
+    {% endcomment %}
+
+    {% comment %}
+    完善的分页导航
+    {% endcomment %}
+    {% if is_paginated %}
+    <div class="pagination">
+        <ul>
+            {% if first %}
+            <li><a href="?page=1">1</a></li>
+            {% endif %}
+            {% if left %}
+            {% if left_has_more %}
+            <li><span>...</span></li>
+            {% endif %}
+            {% for i in left %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endfor %}
+            {% endif %}
+            <li class="current"><a href="?page={{ page_obj.number }}">{{ page_obj.number }}</a></li>
+            {% if right %}
+            {% for i in right %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endfor %}
+            {% if right_has_more %}
+            <li><span>...</span></li>
+            {% endif %}
+            {% endif %}
+            {% if last %}
+            <li><a href="?page={{ paginator.num_pages }}">{{ paginator.num_pages }}</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    {% endif %}
 </div>
 {% endblock %}
