@@ -14,16 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.http import HttpResponse
 from blog.feeds import AllPostsRssFeed
+from blogproject import settings
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'', include('blog.urls')),
-    url(r'', include('comments.urls')),
-    url(r'^robots\.txt$', lambda r: HttpResponse('User-agent: *\nDisallow: /', content_type='text/plain')),
-    url(r'^search/', include('haystack.urls')),
-    url(r'^all/rss/$', AllPostsRssFeed(), name='rss'),
-    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
-]
+                  url(r'^admin/', admin.site.urls),
+                  url(r'', include('blog.urls')),
+                  url(r'', include('comments.urls')),
+                  url(r'^robots\.txt$',
+                      lambda r: HttpResponse('User-agent: *\nDisallow: /', content_type='text/plain')),
+                  url(r'^search/', include('haystack.urls')),
+                  url(r'^all/rss/$', AllPostsRssFeed(), name='rss'),
+                  url(r'^ckeditor/', include('ckeditor_uploader.urls'))
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

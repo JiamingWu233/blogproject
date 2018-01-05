@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'i3k%m-808v3_)^h7975iw4v&fl5chq41^19j@u+b*vx7dvw*q$'
+SECRET_KEY = '^gfndjt8rtcl@sg76y_iqm#l-mzzu06^oha7c94d^t65)a9flr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -114,10 +114,12 @@ USE_L10N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
-
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# upload files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # django-haystack
 HAYSTACK_CONNECTIONS = {
@@ -129,25 +131,27 @@ HAYSTACK_CONNECTIONS = {
 HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
+# django-ckeditor
 CKEDITOR_ALLOW_NONIMAGE_FILES = True
-CKEDITOR_UPLOAD_PATH = 'upload/'
-CKEDITOR_RESTRICT_BY_USER = True
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_RESTRICT_BY_USER = False
 CKEDITOR_UPLOAD_SLUGIFY_FILENAME = False
 CKEDITOR_BROWSE_SHOW_DIRS = True
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': (
-            ['div', 'Source', '-', 'Save', 'NewPage', 'Preview'],
-            ['Undo', 'Redo', '-', 'Find', 'Replace'],
-            ['Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript'],
-            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'],
-            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-            ['Link', 'Unlink', 'Anchor'],
-            ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'],
-            ['Styles', 'Format', 'Font', 'FontSize'],
-            ['TextColor', 'BGColor'],
-            ['Maximize', 'ShowBlocks', 'pbckcode'],
-        ),
+        'toolbar': 'Standard',
+        # 'toolbar': (
+        #     ['div', 'Source', '-', 'Save', 'NewPage', 'Preview'],
+        #     ['Undo', 'Redo', '-', 'Find', 'Replace'],
+        #     ['Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', 'Superscript'],
+        #     ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote'],
+        #     ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+        #     ['Link', 'Unlink', 'Anchor'],
+        #     ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak'],
+        #     ['Styles', 'Format', 'Font', 'FontSize'],
+        #     ['TextColor', 'BGColor'],
+        #     ['Maximize', 'ShowBlocks', 'pbckcode'],
+        # ),
         'extraPlugins': ','.join([
             'uploadimage',  # the upload image feature
             # your extra plugins here
