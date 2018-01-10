@@ -3,21 +3,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{% block title %}{% endblock %}</title>
+    <title>Kaming的博客</title>
     <!-- meta -->
-    <meta name="description" content="Kaming的博客"/>
     <meta charset="UTF-8">
-    <meta content="Kaming Blog" name="title">
-    <meta content="Kaming Blog" name="og:title">
-    <meta content="kaming.xyz" property="og:url">
-    <meta content="写代码的" property="og:description">
-    <meta content="blog" property="og:type">
+    <meta name="author" content="Kaming">
+    <meta name="description" content="写代码的">
+    <meta name="keywords" content="Kaming,博客,Android,Python">
+    <meta name="generator" content="Django 1.10">
+    <meta name="robots" content="index,follow">
+    <meta name="referrer" content="origin-when-cross-origin">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" type="image/png" href="{% static 'blog/media/favicon.ico' %}"/>
+
+    <!--open graph-->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Kaming的博客">
+    <meta property="og:description" content="写代码的">
+    <meta property="og:image" content="/static/lizard.png">
+    <meta property="og:url" content="http://kaming.xyz/">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no,viewport-fit=cover">
 
     <!-- css -->
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'blog/css/pace.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/highlights/github.css' %}">
@@ -26,6 +36,7 @@
         span.highlighted {
             color: red;
         }
+
     </style>
 
     <!-- js -->
