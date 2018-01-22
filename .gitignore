@@ -91,7 +91,6 @@ ENV/
 .ropeproject
 
 database/
-media/
 whoosh_index/
 .idea/
 *.sqlite3
